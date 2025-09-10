@@ -40,11 +40,10 @@ services:
     ports:
       - "3003:3000"
     volumes:
-      # This volume persists Grafana dashboards
       - grafana_data:/var/lib/grafana
-      # This provisions the InfluxDB data source automatically
       - ./grafana_config/datasource.yaml:/etc/grafana/provisioning/datasources/datasource.yaml
       - ./grafana_config/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana_config/dashboards/temperature/dashboard-provider.yaml:/etc/grafana/provisioning/dashboards/temperature-provider.yaml
     depends_on:
       - influxdb
     environment:
